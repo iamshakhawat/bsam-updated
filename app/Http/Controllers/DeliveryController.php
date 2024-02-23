@@ -204,7 +204,7 @@ class DeliveryController extends Controller
     }
 
     public function deliveryinprocess(){
-        $deliveries = DeliveryProcess::where('delivery_status','!=',NULL)->orWhere('delivery_status','!=','Delivered')->get();
+        $deliveries = DeliveryProcess::where('delivery_status','!=',NULL)->where('delivery_status','!=','Delivered')->get();
         return view('backend.delivery.delivery-in-process',compact('deliveries'));
     }
 }
