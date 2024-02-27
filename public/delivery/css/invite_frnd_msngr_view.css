@@ -1,0 +1,52 @@
+
+@font-face {
+    font-family: 'Rotunda';
+    src: local('Rotunda Bold'), local('Rotunda-Bold'),
+        url('/fonts/Rotunda-Bold.woff2') format('woff2'),
+        url('/fonts/Rotunda-Bold.woff') format('woff'),
+        url('/fonts/Rotunda-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Rotunda';
+    src: local('Rotunda Medium'), local('Rotunda-Medium'),
+        url('/fonts/Rotunda-Medium.woff2') format('woff2'),
+        url('/fonts/Rotunda-Medium.woff') format('woff'),
+        url('/fonts/Rotunda-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rotunda';
+    src: local('Rotunda Regular'), local('Rotunda-Regular'),
+        url('/fonts/Rotunda-Regular.woff2') format('woff2'),
+        url('/fonts/Rotunda-Regular.woff') format('woff'),
+        url('/fonts/Rotunda-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+* {
+    font-family: 'Rotunda',sans-serif;
+}
+body{
+    background-color: #FE6B01;
+}
+
+
+.des-box{
+    margin-top: 180px;
+}
+
+
+
+.card {
+    border: none;
+    box-shadow: 0px 5px 20px 0px #000000;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+ 
+}

@@ -1,0 +1,119 @@
+
+body{
+    background-color: #FE6B01;
+    
+}
+.shift-head{
+    background-color: #FE6B01;
+    color: #fff;
+    border-radius: 25px;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26px;
+}
+.form {
+    position: relative;
+   
+}
+
+.form .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af;
+}
+
+.form span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+   
+}
+
+.left-pan {
+    padding-left: 7px;
+}
+
+.left-pan i {
+    padding-left: 10px;
+}
+
+.form-input {
+    border: 1px solid #FE6B01 !important;
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 25px !important;
+   
+}
+
+.form-input:focus {
+    box-shadow: none;
+    border: none
+}
+
+.s-tbl{
+    border: 1px solid #FE6B01;
+    border-radius: 10px;
+    height: 44px;
+    font-size: 17px;
+    line-height: 31px;
+}
+
+.date tr{
+    color: #FE6B01 !important;
+    
+}
+.shift-t{
+    border: 1px solid #FE6B01;
+    border-radius: 10px;
+    height: 44px;
+}
+.shift-t td{
+    color:#656A6F;
+    font-size: 17px;
+    line-height: 21px;
+}
+.btn{
+    border-radius: 10px;
+    background-color: #FE6B01;
+    color: #fff;
+    font-size: 16px;
+    line-height: 34px;
+    height: 44px;
+}
+.btn:hover{
+    color: #fff;
+}
+/* =========================================================  Media Query max-width: 991x =============================================================== */
+@media only screen and (max-width: 991px) {
+    .shift-head{
+        font-size: 19px;
+
+    }
+}
+/* =========================================================  Media Query max-width: 767x =============================================================== */
+@media only screen and (max-width: 767px) {
+    .shift-head{
+        font-size: 19px;
+
+    }
+    .col-md-10 {
+        padding: 0 50px;
+    }
+}
+/* =========================================================  Media Query max-width: 576px =============================================================== */
+@media only screen and (max-width: 576px) {
+
+    .shift-t td{
+
+        font-size: 12px;
+  
+    }
+    .btn{
+
+        font-size: 10px;
+    
+    }
+    
+}

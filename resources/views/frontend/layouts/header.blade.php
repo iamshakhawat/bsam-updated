@@ -26,7 +26,9 @@
                             @auth 
                                 @if(Auth::user()->role=='admin')
                                     <li><i class="ti-user"></i> <a href="{{route('admin')}}" >Dashboard</a></li>
-                                @else 
+                                @elseif (Auth::user()->role == 'delivery')
+                                    <li><i class="ti-user"></i> <a href="{{route('delivery.dashboard')}}" >Dashboard</a></li>
+                                    @else 
                                     <li><i class="ti-user"></i> <a href="{{route('user')}}" >Dashboard</a></li>
                                 @endif
                                 <li><i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Logout</a></li>

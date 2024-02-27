@@ -1,0 +1,82 @@
+
+body{
+    background-color: #FE6B01;
+}
+
+
+.contain {
+	
+	/* transform: translate(-50%, -50%); */
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+}
+.card{
+    height: auto;
+    padding: 10px;
+}
+
+.frame h1 {
+	font-size: 18px;
+    font-weight: 500;
+    list-style: 10px;
+    color: #707070;
+}
+
+.dropzone {
+	width: 153px;
+	height: 102px;
+	border: 1px dashed #999;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.frame .upload-icon {
+	margin: 30px 5px 5px 5px;
+    color: #999;
+    font-size: 38px;
+    font-weight: 200;
+}
+
+
+.frame .btn {
+	display: block;
+	height: 25px;
+	background-color: #FE6B01;
+	color: #fff;
+	border-radius: 8px;
+	font-size: 11px;
+    line-height: 14px;
+    margin-left: 15px;
+    align-self: center !important;
+}
+.frame .col {
+    align-self: center;
+}
+
+.frame .btn:hover {
+    background-color: #FE6B01;
+	color: #fff;
+}
+.upload-input {
+	position: relative;
+	top: -62px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+/* =========================================================  Media Query max-width: 991x =============================================================== */
+@media only screen and (max-width: 991px) {
+
+}
+/* =========================================================  Media Query max-width: 767x =============================================================== */
+@media only screen and (max-width: 767px) {
+
+}
+/* =========================================================  Media Query max-width: 576px =============================================================== */
+@media only screen and (max-width: 576px) {
+
+
+    
+}

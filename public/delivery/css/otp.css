@@ -1,0 +1,84 @@
+
+body{
+    background-color: #FE6B01;
+}
+
+
+.des-box{
+    margin-top: 180px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.height-100 {
+    height: 100vh;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 5px 20px 0px #000000;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+ 
+}
+
+.card h6 {
+    color: #000000;
+    font-size: 22px;
+    line-height: 28px;
+}
+.card p {
+    color: #585858;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.inputs input {
+    width: 85px;
+    height: 113px;
+    border-radius: 15px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid content;
+}
+
+.validate {
+    border-radius: 17px;
+    height: 66px;
+    background-color: #FE6B01;
+    border: 1px solid #FE6B01;
+    width: 100%;
+    font-size: 20px;
+    line-height: 26px;
+   
+}
+
+.content a {
+    color: #FE6B01;
+    transition: all 0.5s;
+}
+
+.content a:hover {
+    color: #ffffff;
+}
+p a{
+    color: #FE6B01;
+}
+p a:hover{
+    color: #FE6B01;
+}

@@ -1,0 +1,65 @@
+
+body{
+    background-color: #FE6B01;
+}
+
+
+.des-box{
+    margin-top: 180px;
+}
+
+
+
+.height-100 {
+    height: 100vh;
+}
+.card {
+    border: none;
+    box-shadow: 0px 5px 20px 0px #000000;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+ 
+}
+.top-head-logo{
+    height: 45px !important;
+    width:200px !important;
+}
+p {
+    font-weight: 600;
+    font-size: 15px;
+}
+.iti {
+    
+    width: 100%;
+ 
+}
+
+input#phone {
+    height: 60px;
+    border-radius: 10px;
+}
+
+.iti__selected-flag {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0px 10px 0 10px;
+    font-size: 14px !important;
+    color: #C6C6C6 !important;
+}
+.inv-frnd-send-btn{
+    border-radius: 10px;
+    background-color: #2DC57E;
+    color: #ffffff;
+    height: 64px;
+    font-size: 21px;
+    line-height: 52px;
+}
+.inv-frnd-send-btn:hover{
+   
+    color: #ffffff;
+}

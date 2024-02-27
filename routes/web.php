@@ -158,6 +158,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
 
     // Delivery Man
     Route::get('/delivery-mans',[DeliveryController::class,'deliverymans'])->name('deliverymans');
+    Route::get('/delivery-statictics',[DeliveryController::class,'deliverystatictics'])->name('deliverystatictics');
     Route::get('/add-delivery',[DeliveryController::class,'adddelivery'])->name('adddelivery');
     Route::get('/delivery-in-process',[DeliveryController::class,'deliveryinprocess'])->name('deliveryinprocess');
     Route::post('/choose-deliveryman',[DeliveryController::class,'choosedeliveryman'])->name('deliveryman.choose');
@@ -229,8 +230,17 @@ Route::middleware(['auth','delivery'])->prefix('/delivery')->group(function(){
     Route::get('/logout',[DeliveryController::class,'logout'])->name('delivery.logout');
 });
 
+// Delivery Homepage
+Route::get('/delivery-panel',[DeliveryController::class,'deliveryHome'])->name('delivery.home');
+Route::get('/delivery/faq',[DeliveryController::class,'faq'])->name('delivery.faq');
+Route::get('/delivery/invite',[DeliveryController::class,'invite'])->name('delivery.invite');
+Route::get('/delivery/invite-email',[DeliveryController::class,'invite_email'])->name('delivery.invite-email');
+Route::get('/delivery/about-us',[DeliveryController::class,'aboutus'])->name('delivery.aboutus');
 
 Route::middleware('guest')->prefix('/delivery')->group(function(){
     Route::get('/login',[DeliveryController::class,'login'])->name('delivery.login');
     Route::post('/login',[DeliveryController::class,'loginPost'])->name('delivery.loginPost');
+    Route::get('/register',[DeliveryController::class,'register'])->name('delivery.register');
+    Route::post('/register',[DeliveryController::class,'registerPost'])->name('delivery.registerPost');
+    
 });

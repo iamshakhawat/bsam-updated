@@ -1,0 +1,38 @@
+
+.bc-head{
+    font-family:'Rotunda',sans-serif;
+    font-size: 30px;
+    line-height: 36px;
+    font-weight:500;
+    color: #1A1818;
+}
+.bc-img{
+    height: 60px;
+}
+.numbering{
+    font-family:'Rotunda',sans-serif;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight:500;
+    color: #000000;
+}
+.bc-content{
+    font-family:'Rotunda',sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight:400;
+    color: #000000 !important;
+}
+.bc-btn{
+    font-family:'Rotunda',sans-serif;
+    font-size: 16px;
+    line-height: 15px;
+    font-weight:400;
+    color: #000000 !important;
+}
+ul li{
+    list-style-type: none;
+}
+ul li a.list-style{
+    text-decoration: none;
+}

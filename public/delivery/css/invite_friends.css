@@ -1,0 +1,76 @@
+
+body{
+    background-color: #FE6B01;
+}
+.inv-head{
+    color: #fff;
+    font-family: 'Rotunda';
+    font-size: 25px;
+    line-height: 29px;
+    font-weight: 400;
+}
+
+.invite .fab , .fas, .far {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: #ffffff;
+    height: 150px;
+    width: auto;
+    font-size: 60px;
+    border: 1px solid #707070;
+    border-radius: 15px;
+    
+}
+.invite .fab , .fas {
+    color: #1775F1;
+
+}
+.invite h2{
+    font-family: 'Rotunda';
+    font-size: 25px;
+    line-height: 29px;
+    font-weight: 400;
+
+}
+/* =========================================================  Media Query max-width: 991x =============================================================== */
+@media only screen and (max-width: 991px) {
+
+    .invite .fab , .fas, .far {
+        height: 100px;
+        font-size: 40px;
+       
+        
+    }
+    .invite h2{
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+/* =========================================================  Media Query max-width: 768x =============================================================== */
+@media only screen and (max-width: 768px) {
+    .invite .fab , .fas, .far {
+        height: 100px;
+        font-size: 40px;
+       
+        
+    }
+    .invite h2{
+        font-size: 15px;
+        line-height: 20px;
+    }
+}
+/* =========================================================  Media Query max-width: 576px =============================================================== */
+@media only screen and (max-width: 576px) {
+    .invite .fab , .fas, .far {
+        height: 60px;
+        font-size: 30px;
+       
+        
+    }
+    .invite h2{
+        font-size: 10px;
+        line-height: 14px;
+    }
+}

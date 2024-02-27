@@ -1,0 +1,79 @@
+
+body{
+    background-color: #FE6B01;
+}
+.ap-contain {
+    border: none;
+    box-shadow: 0px 5px 20px 0px #00000027;
+    justify-content: center;
+    border-radius: 16px;
+    
+    background-color: #fff;
+ 
+}
+/* .card {
+    border: none;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+    
+ 
+} */
+.bnk-details{
+    color:#A19D9D;
+    font-family: 'Rotunda';
+    font-weight: 400;
+}
+.bnk-details h4, h2{
+    font-size: 24px;
+    line-height: 28px;
+}
+.bnk-details p{
+    font-size: 18px;
+    line-height: 12px;
+    margin-top: 15px;
+}
+
+.ap-table .ap-header{
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 16px;
+    color:#FE6B01 ;
+
+
+}
+.ap-table table th {
+    color: #A19D9D !important;
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+}
+.ap-table table td {
+    color: #000000 ;
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+}
+.ap-table .lbl{
+    color: #A19D9D;
+    font-size: 11px;
+    line-height: 12px;
+}
+.ap-table table a{
+    color: #FE6B01 !important;
+}
+.ap-table table td.amount{
+    color:#FE6B01 ;
+}
+.ap-table .btn{
+    background-color: #FE6B01;
+    color: #ffffff !important;
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+}

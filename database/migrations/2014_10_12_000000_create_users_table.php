@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('provider_id')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->enum('delivery_status',['Confirm','Rejeceted','Picked-Up','Out of Delivery','Delivered'])->nullable();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
         });

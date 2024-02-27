@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/icon.min.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <!-- Footer -->
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/forget_pass_otp.css">
+
+    <title>food</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="images/logo-dark.png" height="38" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="#">Vertue Store</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Restaurant Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Delivery Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Career</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="create_new_account_au.html" id="dropdown09"
+                                data-bs-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"><span
+                                        class="flag-icon flag-icon-au"> </span>
+                                    En</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                    <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-tr">
+                                        </span> tr</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i
+                                    class="fa-regular fa-circle-user"></i> Login</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- new account section -->
+
+    <section class="contain my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 ">
+                    
+                </div>
+                <div class="col-md-8">
+                    <div class="bg">
+                        <div class="container py-3">
+                            <div id="app p-5 ">
+                                <div class="container  d-flex justify-content-center align-items-center">
+                                    <div class="position-relative">
+                                        <div class="card px-5 Py-3 text-center">
+                                            <h6 class="mt-4">OTP Code</h6>
+                                          
+                                            <h6 class="mt-4">Enter Verification Code</h6>
+                                            <p class="mt-4 text-uppercase">Please Submit Your Code Here that is send to your Phone/Email</p>
+                                          
+                                            
+                                            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-4"> <input class="m-2 text-center form-control " type="text" id="input1" v-on:keyup="inputenter(1)" maxlength="1" /> <input class="m-2 text-center form-control " v-on:keyup="inputenter(2)" type="text" id="input2" maxlength="1" /> <input class="m-2 text-center form-control " v-on:keyup="inputenter(3)" type="text" id="input3" maxlength="1" /> <input class="m-2 text-center form-control " v-on:keyup="inputenter(4)" type="text" id="input4" maxlength="1" /> </div>
+                                            <div class=" mt-5 "> <button class="btn form-control text-light  validate  content">Next</button></div>
+                                            <p class="mt-2 justify-content-end float-end text-end align-self-end"> <span>Did Not Get The Code?</span> <a href="#" class="text-decoration-none  text-capitalize">Resend</a> </p>
+                                            <p class=" text-center text-black text-uppercase mt-5" style="color:#FE6B01 !important;">Not Registered yet<a href="#" style="color:#FE6B01 !important;" > Create an Account</a></p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer w-100 py-2 mt-2">
+        <div class="container-fluid  ">
+            <div>
+                <img class=" img-fluid f-logo " src="Images/logo.png" alt="">
+            </div>
+            <div class="row row-cols-lg-4 row-cols-md-4 row-cols-sm-4 row-cols-xl-4 row-cols-2  d-flex justify-content-between ">
+                <div class="col mt-2">
+                    <ul>
+                        <li> <a href="#">About us</a></li>
+                        <li> <a href="#">Blogs</a></li>
+                        <li> <a href="#">Privacy policy</a></li>
+                        <li> <a href="#">Terms</a></li>
+                    </ul>
+                </div>
+                <div class="col mt-2 ">
+                    <ul>
+                        <li> <a href="#">View all stories</a></li>
+                        <li> <a href="#">View all countries</a></li>
+                        <li> <a href="#">View all cities</a></li>
+                        <li> <a href="#">Restaurant near me</a></li>
+                    </ul>
+                </div>
+                <div class="col d-flex justify-content-between mt-2 ">
+                    <ul>
+                        <li> <a href="#">Join as merchant</a></li>
+                        <li> <a href="#">Join as deliveryman</a></li>
+                        <li> <a href="#">Get Help</a></li>
+                        <li> <a href="#">Buy a gift card</a></li>
+                    </ul>
+                </div>
+                <div class="col d-flex justify-content-end mt-2">
+                    <ul>
+                        <li> <a href="#">Follow Us</a> </li>
+                        <li class="f-icon"><a href=""> <i class="fab fa-instagram"></i></a> <a href=""><i
+                                    class="fab fa-facebook"></i></a><a href=""><i class="fab fa-twitter"></i></a></li>
+                        <li> <a href="#">Download the app</a></li>
+                        <li class="f-img"> <a class=" img-fluid " href="#"><img src="Images/plystore.png" alt=""></a><a
+                                class=" img-fluid " href="#"><img src="Images/apple.png" alt=""></a><a
+                                class=" img-fluid " href="#"><img src="Images/shopstore.png" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.6.0.js"></script>
+    <!-- Images slider -->
+    <script src="js/otp.js"></script>
+
+
+</body>
+
+</html>

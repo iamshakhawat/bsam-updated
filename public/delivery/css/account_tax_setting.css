@@ -1,0 +1,115 @@
+
+body{
+    background-color: #FE6B01;
+}
+.ap-contain {
+    border: none;
+    box-shadow: 0px 5px 20px 0px #00000027;
+    justify-content: center;
+    border-radius: 47px;
+    background-color: #fff;
+    padding: 100px;
+ 
+}
+.signup-form {
+    justify-content: center;
+    border-radius: 17px;
+    box-shadow: 0px 5px 20px 0px #00000027;
+    
+    
+ 
+}
+.form-logo{
+	height: 40px;
+}
+
+.sign-form-head{
+	color:#FE6B01;
+	font-size: 17px;
+	line-height: 21px;
+}
+
+.des-box{
+    margin-top: 180px;
+}
+.signup-form{
+	background-color: #FAFAFA;
+	padding: 50px 80px;
+	border-radius: 37px;
+}
+
+.iti {
+    
+    width: 100%;
+ 
+}
+.form-group{
+	margin-top: 20px;
+}
+
+input{
+	height: 40px;
+	border-radius: 15px !important;
+	background-color: #fff !important;
+	box-shadow: 0 3px 6px rgba(0,0,0,.16)!important;
+	
+	
+}
+input::placeholder {
+	color: #C6C6C6 !important;
+	font-size: 14px;
+	line-height: 18px;
+  }
+  .iti__arrow {
+	border-bottom: none;
+	border-top: 4px solid #FE6B01 !important;
+}
+  /* .iti__arrow--up {
+    border-top: none;
+    border-bottom: 4px solid #FE6B01 !important;
+} */
+input#checkbox{
+	/* height: auto!important; */
+    height: 13px;
+	outline-color: #FAFAFA;	
+}
+.ck:hover{
+	accent-color:#ed6a0c;
+}
+.ck{
+	accent-color:#ed6a0c;
+}
+.form-check-label .ck:after {
+	color: #fff !important;
+}
+
+.form-check-label{
+	font-size: 15px;
+	line-height: 15px;
+	color: #FE6B01;
+}
+
+.regi-btn {
+    background-color:#FE6B01;
+	color: #fff;
+	font-size: 19px;
+	line-height: 25px;
+    border-radius: 16px;
+	
+}
+.regi-btn:hover {
+    background-color:#FE6B01;
+	color: #fff;
+
+}
+span.regi-lbl {
+    margin-left: 10px;
+	font-size: 17px;
+	line-height: 21px;
+	
+}
+span.regi-lbl a{
+   color: #FE6B01 !important;
+
+}
+

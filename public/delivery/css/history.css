@@ -1,0 +1,38 @@
+
+body{
+    background-color: #FE6B01;
+}
+
+
+.des-box{
+    margin-top: 180px;
+}
+
+
+
+.height-100 {
+    height: 100vh;
+}
+.card {
+    border: none;
+    box-shadow: 0px 5px 20px 0px #000000;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+    height: 550px;
+ 
+}
+.view{
+    font-family:'Rotunda',sans-serif;
+    font-size: 30px;
+    line-height: 34px;
+    color: #1DBF73 !important;
+}
+.view-text{
+    font-family:'Rotunda',sans-serif;
+    font-size: 30px;
+    line-height: 34px;
+    color: #7E7D7D;
+}
+

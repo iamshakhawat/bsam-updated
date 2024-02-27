@@ -1,0 +1,39 @@
+
+body{
+    background-color: #FE6B01;
+    color: #A19D9D;
+}
+
+table{
+    color:#9E9C9C !important;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+table th{
+    color:#9E9C9C ;
+}
+table td{
+    color:#9E9C9C ;
+}
+table td.amount{
+    color:#FE6B01 ;
+}
+
+.loadmore a{
+    font-size: 17px;
+    line-height: 19px;
+    color: #1DBF73 !important;
+    background-color: #fff;
+    border-radius: 14px;
+}
+.date .row .col{
+    color: #A19D9D;
+    background-color: #fff;
+    border-radius: 7px;
+    margin-right: 70px;
+    font-size: 18px;
+    line-height: 21px;
+  
+}

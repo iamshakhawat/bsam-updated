@@ -1,0 +1,121 @@
+
+body{
+    background-color: #FE6B01;
+    
+}
+.bg{
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+ input.form-control {
+    border-radius: 10px;
+    font-size: 14px;
+    height: 42px;
+    background-color: #F1F2F3;
+}
+ .input-file {
+    position: relative;
+    display: block;
+    font-weight: 400;
+}
+.label-text{
+    font-size: 10px;
+    line-height: 13px;
+    color:#FE6B01;
+
+}
+
+.input-file .button {
+    position: absolute;
+    top: 9px;
+    right: 5px;
+    float: none;
+    height: 25px;
+    margin: 0;
+    padding: 0 14px;
+    font-size: 11px;
+    line-height: 25px;
+    background-color:#FE6B01;
+    opacity: .8;
+    transition: opacity .2s;
+    -o-transition: opacity .2s;
+    -ms-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -webkit-transition: opacity .2s;
+    outline: 0;
+    border: 0;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.input-file .button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.input input {
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    height: 42px;
+    padding: 8px 10px;
+    outline: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0;
+    background: #fff;
+    font-size: 14px;
+    color: #404040;
+    appearance: normal;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 10px;
+}
+
+.form-control[readonly] {
+    background-color: #F1F2F3;
+    opacity: 1;
+}
+.more-upload{
+    font-size: 14px;
+    line-height: 17px;
+    color: #FE6B01;
+}
+.up-btn{
+    font-size: 20px;
+    line-height: 26px;
+    color: #fff;
+    background-color: #FE6B01;
+    border-radius: 15px;
+    height: 58px;
+}
+.up-btn:hover{
+    
+    color: #fff;
+   
+}
+a.more-upload:hover {
+    color: #FE6B01;
+}
+/* =========================================================  Media Query max-width: 991x =============================================================== */
+@media only screen and (max-width: 991px) {
+
+}
+/* =========================================================  Media Query max-width: 767x =============================================================== */
+@media only screen and (max-width: 767px) {
+
+}
+/* =========================================================  Media Query max-width: 576px =============================================================== */
+@media only screen and (max-width: 576px) {
+
+
+    
+}

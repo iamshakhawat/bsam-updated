@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Rotunda';
+    src: local('Rotunda Bold'), local('Rotunda-Bold'),
+        url('Rotunda-Bold.woff2') format('woff2'),
+        url('Rotunda-Bold.woff') format('woff'),
+        url('Rotunda-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }

@@ -1,0 +1,93 @@
+
+body{
+    background-color: #FE6B01;
+    color: #A19D9D;
+}
+.ern-head{
+    font-family: 'Rotunda';
+    color: #FFF;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 39px;
+}
+.earn .contain{
+    border-radius: 20px;
+    background-color: #fff;
+    color: #FE6B01;
+ 
+}
+
+.earn-col{
+    border-right: 1px solid #707070;
+    
+}
+.earn .col a{ 
+    color: #9E9C9C !important;
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+.earn .col a:hover{
+    color: #FE6B01 !important;
+}
+.earn .col a.active{
+    color: #FE6B01 !important;
+}
+.s-head{
+    font-family: 'Rotunda';
+    color: #FFF;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+}
+.show-select .pu-select {
+    color: #A19D9D;
+    text-transform: uppercase;
+    border-radius: 14px;
+    font-size: 17px;
+    line-height: 19px;
+
+}
+
+.show-select option{
+    color: #A19D9D;
+    text-transform: uppercase;
+}
+.s-btn{
+    font-size: 18px;
+    line-height: 21px;
+    color:#FE6B01 !important;
+    background-color: #fff;
+    border-radius: 14px;
+}
+table{
+    color:#9E9C9C !important;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+table th{
+    color:#9E9C9C ;
+}
+table td{
+    color:#9E9C9C ;
+}
+table td.amount{
+    color:#FE6B01 ;
+}
+
+.loadmore a{
+    font-size: 17px;
+    line-height: 19px;
+    color:#FE6B01 !important;
+    background-color: #fff;
+    border-radius: 14px;
+}
+
+.form-select:focus {
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+}

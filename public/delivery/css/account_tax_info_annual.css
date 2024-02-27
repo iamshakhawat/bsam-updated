@@ -1,0 +1,144 @@
+
+body{
+    background-color: #FE6B01;
+    color: #A19D9D;
+}
+.ap-contain {
+    border: none;
+    box-shadow: 0px 5px 20px 0px #00000027;
+    justify-content: center;
+    border-radius: 16px;
+    padding: 30px;
+    background-color: #fff;
+ 
+}
+.anual-head{
+    font-size: 25px;
+    line-height: 10px;
+    font-weight: 600;
+    color: #FE6B01;
+
+}
+.anual-head-text{
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #C6C6C6;
+
+}
+.anual-head-btn{
+    font-size: 18px;
+    line-height: 21px;
+    color:#FE6B01 !important;
+    background-color: #fff;
+    border-radius: 16px;
+}
+select#specificSizeSelect {
+    border-radius: 10px;
+    
+}
+select.month-select{
+    width: 180px;
+}
+.date-select{
+    width: 100px;
+}
+.show-select .pu-select {
+    color: #A19D9D;
+    text-transform: uppercase;
+    border-radius: 14px;
+    font-size: 17px;
+    line-height: 19px;
+
+}
+
+.show-select option{
+    color: #A19D9D;
+    text-transform: uppercase;
+}
+.s-btn{
+    font-size: 18px;
+    line-height: 21px;
+    color:#FE6B01 !important;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.ap-table .ap-header{
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 16px;
+    color:#FE6B01 ;
+
+
+}
+.anual-tax-table{
+    background-color: #ffffff;
+    border-radius: 16px;
+}
+.ap-table table th {
+    color: #A19D9D !important;
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+}
+.ap-table table td {
+    color: #000000 ;
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    border-bottom: 1px solid #807E7E;
+    padding-top: 30px;
+    padding-bottom: 0px;
+}
+.ap-table .lbl{
+    color: #A19D9D;
+    font-size: 11px;
+    line-height: 12px;
+}
+.ap-table .tbl-btn{
+    font-size: 18px;
+    line-height: 21px;
+    color:#ffffff !important;
+    background-color: #FE6B01;
+    border-radius: 12px;
+}
+.tbl-date-hdr-btn{
+    color: #A19D9D;
+    font-size: 21px;
+}
+.tbl-date-hdr-btn.active{
+    color: #A19D9D;
+    border-bottom: 3px solid #807E7E;
+    width: 186px;
+}
+.tbl-date-hdr-btn:hover{ 
+    color: #A19D9D;
+    border-bottom: 3px solid #807E7E;
+    width: 186px;
+}
+.ap-table table a.view{
+    color: #FE6B01 ;
+}
+.ap-table table td.amount{
+    color:#FE6B01 ;
+}
+/* .ap-table .btn{
+    background-color: #ffffff;
+    color:#FE6B01 !important;
+    font-family: 'Rotunda';
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+} */
+.form-select:focus {
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+}
+.results {
+    background-color: #fff !important;
+    
+}

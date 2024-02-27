@@ -1,0 +1,46 @@
+
+nav{
+    padding: 20px;
+    background-color: #FE6B01 !important;
+    
+}
+nav ul li{
+    margin-top: 10px;
+}
+.nav-item a.nav-link{
+    font-family:'Rotunda',sans-serif;
+    color: #fff !important;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 5px;
+
+}
+/* nav ln icon */
+span.flag-icon {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    padding-top: 4px;
+}
+
+.nav-item a.nav-link.active, .nav-item a.nav-link:hover{
+    border-radius: 25px;
+    font-family:'Rotunda',sans-serif;
+    color: #FE6B01 !important;
+    font-weight: bold;
+    background-color: #fff !important;
+    
+
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #ffffff;
+    color: #FE6B01;
+}
+
+
+

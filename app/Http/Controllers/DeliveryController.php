@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\DeliveryManNotification;
+use App\Notifications\StatusNotification;
 use Notification;
 
 
@@ -19,7 +20,7 @@ class DeliveryController extends Controller
 {
     public function login()
     {
-        return view('delivery.login');
+        return view('delivery.auth.login');
     }
     public function loginPost(Request $request)
     {
@@ -36,6 +37,54 @@ class DeliveryController extends Controller
             return redirect()->route('delivery.login');
         }
     }
+
+    public function register(){
+        return view('delivery.auth.signup');
+    }
+
+    public function registerPost(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'address' => 'required',
+            'password' => 'required|min:5',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+        $user->role = 'delivery';
+        $user->status = 'inactive';
+        $user->save();
+
+
+        $link = route('deliverymans');
+        $data = [
+            'title' => "New Delivery Man Signup!",
+            'actionURL' => $link,
+            'fas' => "fa-user",
+        ];
+        $users = User::where('role','admin')->where('status','active')->get();
+        foreach($users as $user){
+            Notification::send($user, new StatusNotification($data));
+        }
+
+
+        return redirect()->route('delivery.register')->withError('Request in Pending. Please wait for Confirm.');
+
+    }
+
+    public function deliverystatictics(){
+        $users = User::where('role','delivery')->get();
+        return view('backend.delivery.delivery-satictics',compact('users'));
+    }
+
+
     public function logout()
     {
         Session::forget('user');
@@ -46,7 +95,7 @@ class DeliveryController extends Controller
 
     public function deliverymans()
     {
-        $users = DB::table('users')->where('role', 'delivery')->paginate(10);
+        $users = DB::table('users')->where('role', 'delivery')->orderByDesc('id')->paginate(10);
         return view('backend.delivery.index', compact('users'));
     }
 
@@ -73,17 +122,17 @@ class DeliveryController extends Controller
 
 
 
-        return view('delivery.index',compact('todaytotal','total','processing'));
+        return view('delivery.back.index',compact('todaytotal','total','processing'));
     }
 
     public function profile()
     {
-        return view('delivery.profile');
+        return view('delivery.back.profile');
     }
 
     public function changepassword()
     {
-        return view('delivery.change-password');
+        return view('delivery.back.change-password');
     }
 
     public function changepasswordPost(Request $request)
@@ -103,12 +152,12 @@ class DeliveryController extends Controller
     public function DeliveryRequest()
     {
         $deliveries = DeliveryProcess::where('deliveryman_id', Auth::id())->orderBy('id', 'DESC')->get();
-        return view('delivery.delivery-request', compact('deliveries'));
+        return view('delivery.back.delivery-request', compact('deliveries'));
     }
     public function Deliverydetails($id)
     {
         $order = Order::find($id);
-        return view('delivery.delivery-details', compact('order'));
+        return view('delivery.back.delivery-details', compact('order'));
     }
 
     public function changestate(Request $request)
@@ -145,7 +194,7 @@ class DeliveryController extends Controller
     // Notifications
     public function notifications()
     {
-        return view('delivery.notifications');
+        return view('delivery.back.notifications');
     }
     public function notificationview(Request $request)
     {
@@ -173,7 +222,7 @@ class DeliveryController extends Controller
     public function adddelivery()
     {
         $orders = DB::table('orders')->where('status', 'process')->get();
-        $users = DB::table('users')->where('role', 'delivery')->get();
+        $users = DB::table('users')->where('role', 'delivery')->where('status','active')->get();
 
 
         return view('backend.delivery.add-delivery', compact('orders', 'users'));
@@ -207,4 +256,27 @@ class DeliveryController extends Controller
         $deliveries = DeliveryProcess::where('delivery_status','!=',NULL)->where('delivery_status','!=','Delivered')->get();
         return view('backend.delivery.delivery-in-process',compact('deliveries'));
     }
+    
+    public function deliveryHome(){
+        return view('delivery.home');
+    }
+
+    public function faq(){
+        return view('delivery.FAQ');
+    }
+
+    public function aboutus(){
+        return view('delivery.about-us');
+    }
+
+    public function invite(){
+        return view('delivery.invite');
+    }
+
+    public function invite_email(){
+        return view('delivery.invite_email');
+    }
+
+
+
 }

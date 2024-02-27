@@ -240,6 +240,7 @@
           <a class="collapse-item" href="{{route('deliverymans')}}">Delivery Mans</a>
           <a class="collapse-item" href="{{route('adddelivery')}}">Add Delivery</a>
           <a class="collapse-item" href="{{route('deliveryinprocess')}}">Deliveries in Process</a>
+          <a class="collapse-item" href="{{route('deliverystatictics')}}">Deliveries Statistics </a>
         </div>
       </div>
     </li>

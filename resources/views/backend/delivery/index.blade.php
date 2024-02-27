@@ -120,7 +120,7 @@
                     </table>
                     <span style="float:right">{{ $users->links() }}</span>
                 @else
-                    <h6 class="text-center">No Coupon found!!! Please create coupon</h6>
+                    <h6 class="text-center">No Delivery Man Found</h6>
                 @endif
             </div>
         </div>

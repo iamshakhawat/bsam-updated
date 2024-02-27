@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="build/css/intlTelInput.css">
+  <link rel="stylesheet" href="build/css/demo.css">
+</head>
+<body>
+<h1>A demo with EU countries</h1>
+<form style="margin-left:150px;">
+<input type="tel" id="mobile-number" placeholder="e.g. +1 702 123 4567">
+</form>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="build/js/intlTelInput.js"></script>
+  <script src="build/js/utils.js"></script>
+  <script>
+        $("#mobile-number").intlTelInput({
+          onlyCountries: ["al", "ad", "at", "by", "be", "ba", "bg", "hr", "cz", "dk", 
+          "ee", "fo", "fi", "fr", "de", "gi", "gr", "va", "hu", "is", "ie", "it", "lv", 
+          "li", "lt", "lu", "mk", "mt", "md", "mc", "me", "nl", "no", "pl", "pt", "ro", 
+          "ru", "sm", "rs", "sk", "si", "es", "se", "ch", "ua", "gb"]
+         });
+  </script>  
+</body>
+</html>

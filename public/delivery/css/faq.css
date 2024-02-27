@@ -1,0 +1,152 @@
+
+
+.Wv-title{
+    font-family:'Rotunda',sans-serif;
+    font-weight: bold;
+    font-size: 41px;
+    line-height: 53px;
+    
+}
+
+.wv-text{
+    color: #616161;
+    font-family:'Rotunda',sans-serif;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 25px;
+}
+.sign-up-dtl{
+    background-color: #F4F4F4 !important;
+}
+.sud-head{
+    font-family:'Rotunda',sans-serif;
+    font-weight:500;
+    font-size: 41px;
+    line-height: 53px;
+    color: #000;
+}
+.sub-title{
+    color: #000000;
+    font-family:'Rotunda',sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+}
+.sud-row  li{
+    color: #000000;
+    font-family:'Rotunda',sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+}
+::marker {
+    color: #FE6B01 !important;
+}
+.wdw{
+    color: #000;
+    font-family:'Rotunda',sans-serif;
+    font-weight: bold;
+    font-size: 41px;
+    line-height: 53px;
+}
+.wdw-services .s1:hover{
+    background-color: #F4F4F4 !important;
+}
+.wdw-s-title{
+    color: #000;
+    font-weight: bold;
+    font-family:'Rotunda',sans-serif;
+    font-size: 27px;
+    font-style: normal;
+    list-style: 34px;
+}
+.wdw-s-text{
+    font-family:'Rotunda',sans-serif;
+    color: #616161;
+    font-weight: 400;
+    font-size: 23px;
+    font-style: normal;
+    list-style: 26px;
+}
+.hts-order-head{
+    font-family:'Rotunda',sans-serif;
+    color: #000;
+    font-weight: bold;
+    font-size: 40px;
+    font-style: normal;
+    list-style: 53px;
+}
+.hts-des-title {
+    font-family:'Rotunda',sans-serif;
+    color: #000000;
+    font-weight: bold;
+    font-size: 32px !important;
+    font-style: normal;
+    list-style: 41px;
+}
+.hts-des-text{
+    font-family:'Rotunda',sans-serif;
+    color: #616161;
+    font-weight: 400;
+    font-size: 23px !important;
+    font-style: normal;
+    list-style: 26px;
+}
+.faq-head{
+    font-family:'Rotunda',sans-serif;
+    color: #FE6B01;
+    font-weight: bold;
+    font-size: 40px !important;
+    font-style: normal;
+    list-style: 78px;
+}
+.accordion-button:not(.collapsed) {
+    color: #FE6B01 !important;
+}
+.accordion-item{
+    margin-top: 15px;  
+}
+button.accordion-button {
+    background-color: #fff!important;
+}
+
+.accordion-button::after {
+    background-image: url('/Images/chevron-down-solid.svg');
+
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url('/Images/chevron-up-solid.svg');
+    
+    transform: rotate(-0deg);
+}
+.accordion-button{
+    font-family:'Rotunda',sans-serif;
+    color: #FE6B01 !important;
+    font-weight: 400;
+    font-size: 20px !important;
+    font-style: normal;
+    list-style: 20px;
+}
+.accordion-body{
+    font-family:'Rotunda',sans-serif;
+    color: #918F8E !important;
+    font-weight: 400;
+    font-size: 20px !important;
+    font-style: normal;
+    list-style: 20px;
+}
+/* form slider */
+
+.carousel {
+	padding: 0 70px;
+}
+.carousel .carousel-item {
+	color: #999;
+	font-size: 14px;
+	text-align: center;
+	overflow: hidden;
+	min-height: 290px;
+}
+.carousel-item img{
+    height: 300px;
+}

@@ -1,0 +1,43 @@
+
+body{
+    background-color: #FE6B01;
+    font-family: 'Rotunda';
+}
+.trip-history-bg{
+    background-image: url('../Images/trip.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 682px;
+    width: 100%;
+}
+.trip-card{
+    height: 262px;
+    margin-top: 155px;
+    
+}
+.trip-amount{
+    background-color: #FE6B01;
+    color: #fff;
+    padding: 10px 0px;
+    border-radius: 32px;
+    font-size: 49px;
+    line-height: 59px;
+    font-weight: 200;
+    margin:0 10px 15px 10px; 
+  
+    
+}
+.trip-day{
+    color: #FE6B01;
+    font-size: 28px;
+    line-height: 33px;
+    font-weight: 200;
+    margin-top: 10px;
+}
+.card-footer{
+    color: #FE6B01;
+    font-size: 28px;
+    line-height: 33px;
+    font-weight: 200;
+}

@@ -1,0 +1,110 @@
+
+body{
+    background-color: #FE6B01;
+}
+.personal-details{
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.contain {
+	
+	/* transform: translate(-50%, -50%); */
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+}
+.card{
+    height: auto;
+    padding:15px 30px;
+}
+
+.frame h1 {
+	font-size: 17px;
+    font-weight: 500;
+    line-height: 30px;
+    list-style: 10px;
+    color: #C4C4C4;
+    margin-right: -80px;
+}
+
+.dropzone {
+	width: 71px;
+	height: 47px;
+	border: 1px dashed #C4C4C4;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.frame .upload-icon {
+	margin: 15px 5px 5px 5px;
+    color: #C4C4C4;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+
+
+.frame .btn {
+	display: block;
+	height: 25px;
+	background-color: #FE6B01;
+	color: #fff;
+	border-radius: 8px;
+	font-size: 11px;
+    line-height: 14px;
+    margin-left: 15px;
+    align-self: center !important;
+}
+.frame .col {
+    align-self: center;
+}
+
+.frame .btn:hover {
+    background-color: #FE6B01;
+	color: #fff;
+}
+.upload-input {
+	position: relative;
+	top: -30px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.table>:not(caption)>*>* {
+    background-color: #ffffff;
+   
+}
+.personal-details .table td {
+    color: #C4C4C4;
+}
+
+.personal-details .table td a{
+    float: right;
+    text-decoration: none;
+    color: #FE6B01;
+}
+
+.personal-details td.col-md-6.col-xs-6 {
+    color: #707070;
+}
+.personal-details .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #C4C4C4;
+
+}
+.personal-details .btn{
+    background-color: #FE6B01;
+    color: #fff;
+    font-size: 17px;
+    line-height: 21px;
+    border-radius: 25px;
+}
+.personal-details .btn:hover{
+    background-color: #FE6B01;
+    color: #fff;
+ 
+}
