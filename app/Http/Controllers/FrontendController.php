@@ -1,27 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
+use Auth;
+use Hash;
+use Session;
+use App\User;
+use Newsletter;
+use App\Models\Cart;
+use App\Models\Post;
+use App\Models\Brand;
 use App\Models\Banner;
+use App\Models\PostTag;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\PostTag;
-use App\Models\PostCategory;
-use App\Models\Post;
-use App\Models\Cart;
-use App\Models\Brand;
-use App\User;
-use Auth;
-use Session;
-use Newsletter;
-use DB;
-use Hash;
 use Illuminate\Support\Str;
+use App\Models\PostCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 class FrontendController extends Controller
 {
 
     public function index(Request $request){
-        return redirect()->route($request->user()->role);
+        return $this->home();
     }
 
     public function home(){
@@ -347,18 +349,27 @@ class FrontendController extends Controller
 
     // Login
     public function login(){
-        return view('frontend.pages.login');
+        return view('frontend.login');
     }
     public function loginSubmit(Request $request){
         $data= $request->all();
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'],'status'=>'active'])){
             Session::put('user',$data['email']);
             request()->session()->flash('success','Successfully login');
-            return redirect()->route('home');
+            $url = '/user';
+            if(Auth::user()->role == 'admin'){
+                $url = '/admin';
+            }
+            else if(Auth::user()->role == 'user'){
+                $url = '/user';
+            }else{
+                $url = '/delivery/dashboard';
+            }
+            return redirect($url);
         }
         else{
             request()->session()->flash('error','Invalid email and password pleas try again!');
-            return redirect()->back();
+            return redirect()->route('login.form');
         }
     }
 
@@ -366,31 +377,45 @@ class FrontendController extends Controller
         Session::forget('user');
         Auth::logout();
         request()->session()->flash('success','Logout successfully');
-        return back();
+        return redirect()->route('home');
     }
 
     public function register(){
-        return view('frontend.pages.register');
+        return view('frontend.signup');
     }
     public function registerSubmit(Request $request){
-        // return $request->all();
-        $this->validate($request,[
-            'name'=>'string|required|min:2',
-            'email'=>'string|required|unique:users,email',
-            'password'=>'required|min:6|confirmed',
+
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|max:255|string',
+        'email' => 'required|unique:users,email|max:255|email',
+        'password' => 'required|min:6',
+    ]);
+
+
+
+    if ($validator->fails()) {
+        return response()->json(
+            [
+                'message' => $validator->errors(),
+                'status' => false,
+            ]
+            );
+    }else{
+
+        DB::table('users')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
-        $data=$request->all();
-        // dd($data);
-        $check=$this->create($data);
-        Session::put('user',$data['email']);
-        if($check){
-            request()->session()->flash('success','Successfully registered');
-            return redirect()->route('home');
-        }
-        else{
-            request()->session()->flash('error','Please try again!');
-            return back();
-        }
+
+        return response()->json(
+        [
+            'message' => ['success' => 'Register Successfull!'],
+            'status' => true,
+        ]
+        );
+    }
+        
     }
     public function create(array $data){
         return User::create([

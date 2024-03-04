@@ -31,12 +31,12 @@ Route::get('storage-link', [\App\Http\Controllers\AdminController::class, 'stora
 
 Auth::routes(['register' => false]);
 
-Route::get('user/login', 'FrontendController@login')->name('login.form');
-Route::post('user/login', 'FrontendController@loginSubmit')->name('login.submit');
+Route::get('user/login', 'FrontendController@login')->name('login.form')->middleware('guest');
+Route::post('user/login', 'FrontendController@loginSubmit')->name('login.submit')->middleware('guest');
 Route::get('user/logout', 'FrontendController@logout')->name('user.logout');
 
-Route::get('user/register', 'FrontendController@register')->name('register.form');
-Route::post('user/register', 'FrontendController@registerSubmit')->name('register.submit');
+Route::get('user/register', 'FrontendController@register')->name('register.form')->middleware('guest');
+Route::post('user/register', 'FrontendController@registerSubmit')->name('register.submit')->middleware('guest');
 // Reset password
 Route::get('/password-reset', 'FrontendController@showResetForm')->name('password.reset');
 // Socialite
@@ -201,16 +201,6 @@ Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
-
-
-
-//     Route::get('login/google', 'Auth\SocialAuthController@redirectToGoogle');
-// Route::get('login/google/callback', 'Auth\SocialAuthController@handleGoogleCallback');
-
-// Route::get('login/facebook', 'Auth\SocialAuthController@redirectToFacebook');
-// Route::get('login/facebook/callback', 'Auth\SocialAuthController@handleFacebookCallback');
-
-
 
 
 

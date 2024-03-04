@@ -1,665 +1,1001 @@
-@extends('frontend.layouts.master')
-@section('title','E-SHOP || HOME PAGE')
-@section('main-content')
-<!-- Slider Area -->
-@if(count($banners)>0)
-    <section id="Gslider" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            @foreach($banners as $key=>$banner)
-        <li data-target="#Gslider" data-slide-to="{{$key}}" class="{{(($key==0)? 'active' : '')}}"></li>
-            @endforeach
+@extends('frontend.layout.master')
+@section('content')
+<main class="main overflow-hidden">
 
-        </ol>
-        <div class="carousel-inner" role="listbox">
-                @foreach($banners as $key=>$banner)
-                <div class="carousel-item {{(($key==0)? 'active' : '')}}">
-                    <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block text-left">
-                        <h1 class="wow fadeInDown">{{$banner->title}}</h1>
-                        <p>{!! html_entity_decode($banner->description) !!}</p>
-                        <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
+    <!--------- Cat area start --------->
+    <section class="cat__area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cat__main__slider owl-carousel">
+                        @php
+                            $cats = DB::table('categories')->where('status','active')->get();
+                        @endphp
+                        @foreach ($cats as $cat)
+                            <div class="cat__single__slide">
+                                <div class="cat__img__blk">
+                                    <img src="{{ $cat->photo }}" alt="{{ $cat->title }}">
+                                </div>
+                                <div class="cat__info">
+                                    <a href="{{ route('product-cat',$cat->slug) }}" class="stretched-link">{{ $cat->title }}</a>
+                                    <p>{{ \App\Models\Product::where('cat_id',$cat->id)->where('status','active')->count() }} Items</p>
+                                </div>
+                            </div>
+                        @endforeach
+                       
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
-        <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>
     </section>
-@endif
+    <!--------- Cat area start --------->
 
-<!--/ End Slider Area -->
-
-<section class="small-banner section">
-    <div class="container-fluid">
-        <div class="col-12">
-            <div class="section-title">
-                <h2>All Category</h2>
+    <!--------- Hero area start --------->
+    <section class="hero__area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hero__main__blk">
+                        <div class="hero__content">
+                            <h1>Order groceries for delivery or pickup today</h1>
+                            <p>Whatever you want from local stores, brought right to your door.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            @php
-            $category_lists=DB::table('categories')->where('status','active')->limit(3)->get();
-            @endphp
-            @if($category_lists)
-                @foreach($category_lists as $cat)
-                    @if($cat->is_parent==1)
-                        <!-- Single Banner  -->
-                        <div class="col-lg-2 col-md-2 col-xs-6 ">
-                            <div class="single-banner rounded-lg" style="height: 180px; width: 180px;">
-                                @if($cat->photo)
-                                    <img src="{{$cat->photo}}" alt="{{$cat->photo}}">
-                                @else
-                                    <img src="https://via.placeholder.com/600x370" alt="#">
-                                @endif
-                                <div class="content">
-                                    <h3>{{$cat->title}}</h3>
-                                        <a href="{{route('product-cat',$cat->slug)}}">Discover Now</a>
+    </section>
+    <!--------- Hero area end --------->
+
+    <!--------- Product area start --------->
+    <section class="product__area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product__topbar">
+                        <h2>Fresh Fruit</h2>
+                        <a href="#">View all</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__main__slider owl-carousel">
+
+                        @php
+                            $products = DB::table('products')->where('status','active')->where('condition','default')->limit(15)->get();
+                        @endphp
+
+                    @foreach ($products as $product)
+                        <div class="product__single__slide">
+                            <div class="product__add__cart">
+                                <a href="{{ route('add-to-cart',$product->slug) }}"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                        cart</span></a>
+                            </div>
+                            <div class="product__img__blk">
+                                <img src="{{ $product->photo }}" alt="{{ $product->slug }}">
+                            </div>
+                            <div class="product__info">
+                                <div class="product__label">
+                                    <span>Organic</span>
+                                </div>
+                                <div class="product__price">
+                                    <span>$ {{ $product->price }}</span>
+                                    <span>each(est.)</span>
+                                </div>
+                                <div class="product__title">
+                                    <a href="{{ route('product-detail',$product->slug) }}" class="stretched-link">{{ $product->title }}</a>
+                                </div>
+                                <div class="product__qty">
+                                    <span>{{ $product->stock }} Available</span>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                    <!-- /End Single Banner  -->
-                @endforeach
-            @endif
-        </div>
-    </div>
-</section>
+                    @endforeach
 
-<!-- Start Product Area -->
-<div class="product-area section">
-        <div class="container-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------- Product area end --------->
+
+    <!--------- Product area start --------->
+    <section class="product__area">
+        <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>Trending Item</h2>
+                <div class="col-lg-12">
+                    <div class="product__topbar">
+                        <h2>Fresh Vegetables</h2>
+                        <a href="#">View all</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__main__slider owl-carousel">
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f1.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f2.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f3.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f4.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f5.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f6.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f7.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f8.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f9.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f10.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f11.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f12.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------- Product area end --------->
+
+    <!--------- Product area start --------->
+    <section class="product__area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product__topbar">
+                        <h2>Frozen Snacks</h2>
+                        <a href="#">View all</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__main__slider owl-carousel">
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f1.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f2.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f3.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f4.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f5.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f6.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f7.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f8.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f9.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f10.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f11.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product__single__slide">
+                        <div class="product__add__cart">
+                            <a href="#"><span><i class="far fa-plus"></i></span><span>Add</span><span>to
+                                    cart</span></a>
+                        </div>
+                        <div class="product__img__blk">
+                            <img src="assets/img/products/f12.jpg" alt="">
+                        </div>
+                        <div class="product__info">
+                            <div class="product__label">
+                                <span>Organic</span>
+                            </div>
+                            <div class="product__price">
+                                <span>$ 0.36</span>
+                                <span>each(est.)</span>
+                            </div>
+                            <div class="product__title">
+                                <a href="#" class="stretched-link">Organic Banana</a>
+                            </div>
+                            <div class="product__qty">
+                                <span>$0.89/lb</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------- Product area end --------->
+
+    <!--------- Work area start --------->
+    <section class="work__area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="work__title">
+                        <h2>Grocery delivery you can count on</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="work__single__blk">
+                        <div class="work__img__blk">
+                            <img src="assets/img/basic/w1.jpg" alt="">
+                        </div>
+                        <div class="work__info">
+                            <h4>Choose what you want</h4>
+                            <p>Select items from your favorite grocery stores at Instacart.com or in the app.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="work__single__blk">
+                        <div class="work__img__blk">
+                            <img src="assets/img/basic/w2.jpg" alt="">
+                        </div>
+                        <div class="work__info">
+                            <h4>See real-time updates</h4>
+                            <p>Personal shoppers pick items with care. Chat as they shop and manage your order.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="work__single__blk">
+                        <div class="work__img__blk">
+                            <img src="assets/img/basic/w3.jpg" alt="">
+                        </div>
+                        <div class="work__info">
+                            <h4>Get your items same-day</h4>
+                            <p>Pick a convenient time for you. Enjoy Instacart’s 100% quality guarantee on every
+                                order.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------- Work area end --------->
+
+    <!--------- About area start --------->
+    <section class="about__area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="about__title">
+                        <h2>The largest online grocery marketplace in North America</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <div class="product-info">
-                        <div class="nav-main">
-                            <!-- Tab Nav -->
-                            <ul class="nav nav-tabs filter-tope-group" id="myTab" role="tablist">
-                                @php
-                                    $categories=DB::table('categories')->where('status','active')->where('is_parent',1)->get();
-                                    // dd($categories);
-                                @endphp
-                                @if($categories)
-                                <button class="btn" style="background:black"data-filter="*">
-                                    All Products
-                                </button>
-                                    @foreach($categories as $key=>$cat)
+                <div class="col-lg-12">
+                    <div class="about__img__blk">
+                        <img src="assets/img/basic/about_bg.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="about__single__blk">
+                        <h4>1 billion <br>products</h4>
+                        <p>available to shop across the catalog</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="about__single__blk">
+                        <h4>80,000 <br>stores</h4>
+                        <p>from local grocers to chain stores</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="about__single__blk">
+                        <h4>14,000 <br>cities</h4>
+                        <p>served across the U.S. & Canada</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="about__single__blk">
+                        <h4>Millions of <br>orders</h4>
+                        <p>delivered or picked up yearly</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------- About area end --------->
 
-                                    <button class="btn" style="background:none;color:black;"data-filter=".{{$cat->id}}">
-                                        {{$cat->title}}
+    <!--------- FAQ area start --------->
+    <section class="faq__area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="faq__title">
+                        <h2>Common questions</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="faq__main__blk">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        How does Instacart delivery and curbside pickup work?
                                     </button>
-                                    @endforeach
-                                @endif
-                            </ul>
-                            <!--/ End Tab Nav -->
-                        </div>
-                        <br>
-                        <div class="tab-content isotope-grid" id="myTabContent">
-                             <!-- Start Single Tab -->
-                            @if($product_lists)
-                                @foreach($product_lists as $key=>$product)
-                                <div  class="col-xs-6 col-md-2 col-lg-2 p-b-35 isotope-item pr-0  my-auto {{$product->cat_id}}"
-                                  >
-                                    <div class="single-product border" style="height: 280px">
-                                        <div class="product-img">
-                                            <a href="{{route('product-detail',$product->slug)}}">
-                                                @php
-                                                    $photo=explode(',',$product->photo);
-                                                // dd($photo);
-                                                @endphp
-                                                <img style="max-height: 140px; min-height: 140px;" class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                @if($product->stock<=0)
-                                                    <span class="out-of-stock">Sale out</span>
-                                                @elseif($product->condition=='new')
-                                                    <span class="new">New</span
-                                                @elseif($product->condition=='hot')
-                                                    <span class="hot">Hot</span>
-                                                @else
-                                                    <span class="price-dec">{{$product->discount}}% Off</span>
-                                                @endif
-
-
-                                            </a>
-                                            <div class="button-head ">
-                                                <div class="product-action">
-                                                    <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                    <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                                </div>
-                                                <div class="product-action-2 pr-3">
-                                                    <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-content px-2">
-                                            <h3 ><a class="product-title" href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-                                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-                                           <script>
-                                                $(document).ready(function() {
-                                                    // Select all elements with the class 'product-title'
-                                                    $('.product-title').each(function() {
-                                                        // Get the text content of the current element
-                                                        var titleText = $(this).text();
-
-                                                        // Check if the title length is greater than 20 characters
-                                                        if (titleText.length > 50) {
-                                                            // Truncate the title to 20 characters and add ellipsis
-                                                            var truncatedTitle = titleText.substring(0, 50) + '...';
-
-                                                            // Update the text content of the current element with the truncated title
-                                                            $(this).text(truncatedTitle);
-                                                        }
-                                                    });
-                                                });
-                                                </script>
-                                            <div class="product-price">
-                                                @php
-                                                    $after_discount=($product->price-($product->price*$product->discount)/100);
-                                                @endphp
-                                                <span>৳{{number_format($after_discount,2)}}</span>
-                                                <del style="padding-left:4%;">৳{{number_format($product->price,2)}}</del>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-
-                             <!--/ End Single Tab -->
-                            @endif
-
-                        <!--/ End Single Tab -->
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
-<!-- End Product Area -->
-{{-- @php
-    $featured=DB::table('products')->where('is_featured',1)->where('status','active')->orderBy('id','DESC')->limit(1)->get();
-@endphp --}}
-<!-- Start Midium Banner  -->
-
-
-{{-- <section class="midium-banner">
-    <div class="container">
-        <div class="row">
-            @if($featured)
-                @foreach($featured as $data)
-                    <!-- Single Banner  -->
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="single-banner">
-                            @php
-                                $photo=explode(',',$data->photo);
-                            @endphp
-                            <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                            <div class="content">
-                                <p>{{$data->cat_info['title']}}</p>
-                                <h3>{{$data->title}} <br>Up to<span> {{$data->discount}}%</span></h3>
-                                <a href="{{route('product-detail',$data->slug)}}">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /End Single Banner  -->
-                @endforeach
-            @endif
-        </div>
-    </div>
-</section> --}}
-
-
-<!-- End Midium Banner -->
-
-<!-- Start Most Popular -->
-<div class="product-area most-popular section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Hot Item</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="owl-carousel popular-slider">
-                    @foreach($product_lists as $product)
-                        @if($product->condition=='hot')
-                            <!-- Start Single Product -->
-                        <div class="single-product">
-                            <div class="product-img">
-                                <a href="{{route('product-detail',$product->slug)}}">
-                                    @php
-                                        $photo=explode(',',$product->photo);
-                                    // dd($photo);
-                                    @endphp
-                                    <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    {{-- <span class="out-of-stock">Hot</span> --}}
-                                </a>
-                                <div class="button-head">
-                                    <div class="product-action">
-                                        <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                        <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                    </div>
-                                    <div class="product-action-2">
-                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Instacart makes it easy to order from your favorite stores. Shop for
+                                            items from stores near you, with a selection of more than 500 retailers
+                                            and trusted local grocers across North America. Then, Instacart will
+                                            connect you with a personal shopper in your area to shop and deliver
+                                            your order. Contactless delivery is available with our “Leave at my
+                                            door” option.</p>
+                                        <p>You can track your order’s progress and communicate with your shopper
+                                            every step of the way using the Instacart app or website.</p>
+                                        <p>Instacart also offers curbside pickup at select retail locations. Simply
+                                            place your order and choose a pickup time, and a shopper will prepare
+                                            your order at the store.</p>
+                                        <p>When you get to the store, use the Instacart app to notify us. Depending
+                                            on the store, a shopper or store employee will bring the groceries to
+                                            your car, or you can pick them up at the designated area.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="product-content">
-                                <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-                                <div class="product-price">
-                                    <span class="old">${{number_format($product->price,2)}}</span>
-                                    @php
-                                    $after_discount=($product->price-($product->price*$product->discount)/100)
-                                    @endphp
-                                    <span>${{number_format($after_discount,2)}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Most Popular Area -->
-
-<!-- Start Shop Home List  -->
-<section class="shop-home-list section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="shop-section-title">
-                            <h1>Latest Items</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    @php
-                        $product_lists=DB::table('products')->where('status','active')->orderBy('id','DESC')->limit(6)->get();
-                    @endphp
-                    @foreach($product_lists as $product)
-                        <div class="col-md-4">
-                            <!-- Start Single List  -->
-                            <div class="single-list">
-                                <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <div class="list-image overlay">
-                                        @php
-                                            $photo=explode(',',$product->photo);
-                                            // dd($photo);
-                                        @endphp
-                                        <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                        <a href="{{route('add-to-cart',$product->slug)}}" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                        aria-expanded="false" aria-controls="collapseTwo">
+                                        How much does Instacart cost?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>You don’t need a membership to order with Instacart. In fact, you can
+                                            even order from warehouse clubs, like Costco, Sam’s Club, and BJ’s
+                                            Wholesale Club, without a retailer club membership.</p>
+                                        <p>To get started, create an account, select the store you want to shop, and
+                                            place your order. New customers may be eligible for free delivery
+                                            promotions.</p>
+                                        <p>Delivery: Fees start at $3.99 for same-day orders over $35. Fees vary for
+                                            one-hour deliveries, club store deliveries, and deliveries under $35.
+                                        </p>
+                                        <p>Pickup: There may be a “pickup fee” (equivalent to a delivery fee for
+                                            pickup orders) on your pick up order.</p>
+                                        <p>Service fees: Service fees vary and are subject to change based on
+                                            factors like location and the number and types of items in your cart.
+                                            Orders containing alcohol have a separate service fee.</p>
+                                        <p>With an optional Instacart+ membership, you can get $0 delivery fee on
+                                            every order over $35 and lower service fees too.</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-12 no-padding">
-                                    <div class="content">
-                                        <h4 class="title"><a href="#">{{$product->title}}</a></h4>
-                                        <p class="price with-discount">{{($product->discount)}} %</p>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                        aria-expanded="false" aria-controls="collapseThree">
+                                        Will I pay the same price on Instacart as I would in store?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Retail partners set the prices of items on the Instacart marketplace.
+                                            While many retailers offer everyday store prices on Instacart, some
+                                            retailers may set prices on the Instacart platform that are different
+                                            from in-store prices.</p>
+                                        <p>You can view pricing policies for each retailer on the Instacart app and
+                                            website.</p>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                        aria-expanded="false" aria-controls="collapseFour">
+                                        What happens if something is out of stock and I need to give specific
+                                        instructions?
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse"
+                                    aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Instacart makes it easy to communicate with your shopper. When an item
+                                            you want is out-of-stock at the store, your shopper will follow your
+                                            replacement preferences.</p>
+                                        <p>You can set item and delivery instructions in advance, as well as chat
+                                            directly with your shopper while they shop and deliver your items. You
+                                            can tell the shopper to:</p>
+                                        <ul>
+                                            <li>Find Best Match: By default, your shopper will use their best
+                                                judgement to pick a replacement for your item.</li>
+                                            <li>Pick Specific Replacement: You can pick a specific alternative for
+                                                the shopper to purchase if your first choice is out-of-stock.</li>
+                                            <li>Don’t Replace: For items you’d rather not replace, choose “Don’t
+                                                replace” to get a refund if the item is out of stock.</li>
+                                        </ul>
+                                        <p>You can update or cancel your order as long as your shopper hasn’t
+                                            started shopping. If you need to make changes after shopping has
+                                            started, you can use the app or website to approve replacements or chat
+                                            with your shopper.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- End Single List  -->
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Shop Home List  -->
-
-<!-- Start Shop Blog  -->
-<section class="shop-blog section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>From Our Blog</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @if($posts)
-                @foreach($posts as $post)
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Blog  -->
-                        <div class="shop-single-blog">
-                            <img src="{{$post->photo}}" alt="{{$post->photo}}">
-                            <div class="content">
-                                <p class="date">{{$post->created_at->format('d M , Y. D')}}</p>
-                                <a href="{{route('blog.detail',$post->slug)}}" class="title">{{$post->title}}</a>
-                                <a href="{{route('blog.detail',$post->slug)}}" class="more-btn">Continue Reading</a>
-                            </div>
-                        </div>
-                        <!-- End Single Blog  -->
-                    </div>
-                @endforeach
-            @endif
-
-        </div>
-    </div>
-</section>
-<!-- End Shop Blog  -->
-
-<!-- Start Shop Services Area -->
-<section class="shop-services section home">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-rocket"></i>
-                    <h4>Free shiping</h4>
-                    <p>Orders over $100</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-reload"></i>
-                    <h4>Free Return</h4>
-                    <p>Within 30 days returns</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-lock"></i>
-                    <h4>Sucure Payment</h4>
-                    <p>100% secure payment</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-tag"></i>
-                    <h4>Best Peice</h4>
-                    <p>Guaranteed price</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Shop Services Area -->
-
-@include('frontend.layouts.newsletter')
-
-<!-- Modal -->
-@if($product_lists)
-    @foreach($product_lists as $key=>$product)
-        <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row no-gutters">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                                    <!-- Product Slider -->
-                                        <div class="product-gallery">
-                                            <div class="quickview-slider-active">
-                                                @php
-                                                    $photo=explode(',',$product->photo);
-                                                // dd($photo);
-                                                @endphp
-                                                @foreach($photo as $data)
-                                                    <div class="single-slider">
-                                                        <img src="{{$data}}" alt="{{$data}}">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    <!-- End Product slider -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                                        aria-expanded="false" aria-controls="collapseFive">
+                                        What happens if there's an issue with my order?
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse"
+                                    aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>If something isn’t right, you’ve got options. In the Instacart app or
+                                            website, you can report:</p>
+                                        <ul>
+                                            <li>Missing items</li>
+                                            <li>Incorrect items</li>
+                                            <li>Damaged items</li>
+                                            <li>Poor replacements</li>
+                                            <li>Early/late orders</li>
+                                        </ul>
+                                        <p>If an order never came, or you get someone else’s order, you can reach
+                                            out to Instacart Customer Experience.</p>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="quickview-content">
-                                        <h2>{{$product->title}}</h2>
-                                        <div class="quickview-ratting-review">
-                                            <div class="quickview-ratting-wrap">
-                                                <div class="quickview-ratting">
-                                                    {{-- <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> --}}
-                                                    @php
-                                                        $rate=DB::table('product_reviews')->where('product_id',$product->id)->avg('rate');
-                                                        $rate_count=DB::table('product_reviews')->where('product_id',$product->id)->count();
-                                                    @endphp
-                                                    @for($i=1; $i<=5; $i++)
-                                                        @if($rate>=$i)
-                                                            <i class="yellow fa fa-star"></i>
-                                                        @else
-                                                        <i class="fa fa-star"></i>
-                                                        @endif
-                                                    @endfor
-                                                </div>
-                                                <a href="#"> ({{$rate_count}} customer review)</a>
-                                            </div>
-                                            <div class="quickview-stock">
-                                                @if($product->stock >0)
-                                                <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} in stock</span>
-                                                @else
-                                                <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} out stock</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        @php
-                                            $after_discount=($product->price-($product->price*$product->discount)/100);
-                                        @endphp
-                                        <h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>    ${{number_format($after_discount,2)}}  </h3>
-                                        <div class="quickview-peragraph">
-                                            <p>{!! html_entity_decode($product->summary) !!}</p>
-                                        </div>
-                                        @if($product->size)
-                                            <div class="size">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Size</h5>
-                                                        <select>
-                                                            @php
-                                                            $sizes=explode(',',$product->size);
-                                                            // dd($sizes);
-                                                            @endphp
-                                                            @foreach($sizes as $size)
-                                                                <option>{{$size}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    {{-- <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Color</h5>
-                                                        <select>
-                                                            <option selected="selected">orange</option>
-                                                            <option>purple</option>
-                                                            <option>black</option>
-                                                            <option>pink</option>
-                                                        </select>
-                                                    </div> --}}
-                                                </div>
-                                            </div>
-                                        @endif
-                                        <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
-                                            @csrf
-                                            <div class="quantity">
-                                                <!-- Input Order -->
-                                                <div class="input-group">
-                                                    <div class="button minus">
-                                                        <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                                            <i class="ti-minus"></i>
-                                                        </button>
-                                                    </div>
-													<input type="hidden" name="slug" value="{{$product->slug}}">
-                                                    <input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
-                                                    <div class="button plus">
-                                                        <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-                                                            <i class="ti-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <!--/ End Input Order -->
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <button type="submit" class="btn">Add to cart</button>
-                                                <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
-                                            </div>
-                                        </form>
-                                        <div class="default-social">
-                                        <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-                                        </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingSix">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseSix"
+                                        aria-expanded="false" aria-controls="collapseSix">
+                                        Can I get contactless delivery with Instacart?
+                                    </button>
+                                </h2>
+                                <div id="collapseSix" class="accordion-collapse collapse"
+                                    aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>The health and safety of our community is our number one priority. We are
+                                            excited to offer contactless delivery through our Leave at My Door
+                                            delivery feature.</p>
+                                        <p>Leave at My Door delivery gives you the flexibility to have your
+                                            groceries delivered without having to come to the door or be at home.
+                                            You can leave delivery instructions for your shopper at checkout, and
+                                            we’ll notify you when your order arrives.</p>
+                                        <p>Leave at My Door is now the default setting for all Instacart deliveries.
+                                            If you’d prefer to not use this feature, simply uncheck the box that
+                                            says “Leave at my door if I’m not around” at checkout.</p>
+                                        <p>Customers who order alcohol, prescriptions, or certain high-value items
+                                            may need to show ID upon delivery. We ask shoppers to wear masks
+                                            whenever they come into contact with customers.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-    @endforeach
-@endif
-<!-- Modal end -->
+    </section>
+    <!--------- FAQ area end --------->
+
+    <!--------- Default area start --------->
+    <!--------- Default area end --------->
+
+</main>
 @endsection
-
-@push('styles')
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons' async='async'></script>
-    <style>
-        /* Banner Sliding */
-        #Gslider .carousel-inner {
-        background: #000000;
-        color:black;
-        }
-
-        #Gslider .carousel-inner{
-        height: 550px;
-        }
-        #Gslider .carousel-inner img{
-            width: 100% !important;
-            opacity: .8;
-        }
-
-        #Gslider .carousel-inner .carousel-caption {
-        bottom: 60%;
-        }
-
-        #Gslider .carousel-inner .carousel-caption h1 {
-        font-size: 50px;
-        font-weight: bold;
-        line-height: 100%;
-        color: #F7941D;
-        }
-
-        #Gslider .carousel-inner .carousel-caption p {
-        font-size: 18px;
-        color: black;
-        margin: 28px 0 28px 0;
-        }
-
-        #Gslider .carousel-indicators {
-        bottom: 70px;
-        }
-    </style>
-@endpush
-
-@push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <script>
-
-        /*==================================================================
-        [ Isotope ]*/
-        var $topeContainer = $('.isotope-grid');
-        var $filter = $('.filter-tope-group');
-
-        // filter items on button click
-        $filter.each(function () {
-            $filter.on('click', 'button', function () {
-                var filterValue = $(this).attr('data-filter');
-                $topeContainer.isotope({filter: filterValue});
-            });
-
-        });
-
-        // init Isotope
-        $(window).on('load', function () {
-            var $grid = $topeContainer.each(function () {
-                $(this).isotope({
-                    itemSelector: '.isotope-item',
-                    layoutMode: 'fitRows',
-                    percentPosition: true,
-                    animationEngine : 'best-available',
-                    masonry: {
-                        columnWidth: '.isotope-item'
-                    }
-                });
-            });
-        });
-
-        var isotopeButton = $('.filter-tope-group button');
-
-        $(isotopeButton).each(function(){
-            $(this).on('click', function(){
-                for(var i=0; i<isotopeButton.length; i++) {
-                    $(isotopeButton[i]).removeClass('how-active1');
-                }
-
-                $(this).addClass('how-active1');
-            });
-        });
-    </script>
-    <script>
-         function cancelFullScreen(el) {
-            var requestMethod = el.cancelFullScreen||el.webkitCancelFullScreen||el.mozCancelFullScreen||el.exitFullscreen;
-            if (requestMethod) { // cancel full screen.
-                requestMethod.call(el);
-            } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
-                var wscript = new ActiveXObject("WScript.Shell");
-                if (wscript !== null) {
-                    wscript.SendKeys("{F11}");
-                }
-            }
-        }
-
-        function requestFullScreen(el) {
-            // Supports most browsers and their versions.
-            var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
-
-            if (requestMethod) { // Native full screen.
-                requestMethod.call(el);
-            } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
-                var wscript = new ActiveXObject("WScript.Shell");
-                if (wscript !== null) {
-                    wscript.SendKeys("{F11}");
-                }
-            }
-            return false
-        }
-    </script>
-
-@endpush
